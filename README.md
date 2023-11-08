@@ -8,7 +8,7 @@
 
 << List team member names >>
 
-***
+*** Jay Shi, Scott Mcsgay 
 
 ## Project Description
 
