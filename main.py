@@ -1,16 +1,12 @@
 import pygame
+import sys
+sys.path.append('src')
 from sample_controller import Controller
-""" 
-its not importing correctly for some reason 
-
-
-
-"""
 #import your controller
 
 def main():
     pygame.init()
-    screen = Controller()
+    screen = Controller.
     #Call your mainloop
     
     ###### NOTHING ELSE SHOULD GO IN main(), JUST THE ABOVE 3 LINES OF CODE ######
