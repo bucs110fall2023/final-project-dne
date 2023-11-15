@@ -1,9 +1,16 @@
 import pygame
+from sample_controller import Controller
+""" 
+its not importing correctly for some reason 
+
+
+
+"""
 #import your controller
 
 def main():
     pygame.init()
-    #Create an instance on your controller object
+    screen = Controller()
     #Call your mainloop
     
     ###### NOTHING ELSE SHOULD GO IN main(), JUST THE ABOVE 3 LINES OF CODE ######
