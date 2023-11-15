@@ -3,8 +3,7 @@ class Controller:
   
   def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((800,800))
-        pygame.display.set_caption("Tower Defense")
+        self.screen = pygame.display.set_mode()
         self.running = True
   def mainloop(self):
     #select state loop
@@ -24,18 +23,27 @@ class Controller:
     ### below are some sample loop states ###
 
   def menuloop(self):
+    background_image = pygame.image.load("assets\gui.jpg")
+    self.screen.blit(background_image, (0, 0))
+    pygame.display.set_caption("menu")
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
             self.state = "game"
+    pygame.display.flip()
 
 
   def gameloop(self):
-      #event loop
-      
-      #update data
-      pass
+
+     background_image = pygame.image.load("assets\class_diagram.jpg")
+     self.screen.blit(background_image, (0, 0))   
+     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            self.running = False
+        if event.type == pygame.KEYDOWN:
+            print("gamestate")
+     pygame.display.flip()
       #redraw
     
   def gameoverloop(self):
