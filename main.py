@@ -1,7 +1,5 @@
 import pygame
-import sys
-sys.path.append('src')
-from sample_controller import Controller
+from src.sample_controller import Controller
 #import your controller
 
 def main():
