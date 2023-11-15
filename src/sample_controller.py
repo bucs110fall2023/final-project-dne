@@ -30,7 +30,7 @@ class Controller:
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_KP_ENTER:
+            if event.key == pygame.K_SPACE:
                 self.state = "game"
                 self.screen.fill((0,0,0))
     pygame.display.flip()
