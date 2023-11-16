@@ -1,5 +1,7 @@
 import pygame
+import random as R
 from src.world import World
+from src.badguy import Enemy
 from src.Constants import Constants as C
 class Controller:
   
@@ -40,23 +42,31 @@ class Controller:
                 self.screen.fill((0,0,0))
     #blits and flips display
     world.draw(self.screen)
+    pygame.display.flip()
         
             
 
 
 
   def gameloop(self):
-     #loads map background
-     world = World(C.MAPIMAGE)
-     #proccesses events
-     for event in pygame.event.get():
+    #loads map background
+    world = World(C.MAPIMAGE)
+    world.draw(self.screen)
+    enemy_group = pygame.sprite.Group()
+    #proccesses events
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
-            print("gamestate")
-     world.draw(self.screen)
-      #redraw
-    
+            self.enemy = Enemy((300,300),C.ENEMYIMAGE)
+            enemy_group.add(self.enemy)
+        enemy_group.draw(self.screen)
+        #redraw
+        print(enemy_group)
+    pygame.display.flip()
+  
+  
+  
   def gameoverloop(self):
       #event loop
       pass
