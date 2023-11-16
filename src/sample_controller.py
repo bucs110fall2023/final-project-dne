@@ -1,13 +1,13 @@
 import pygame
+from src.world import World
+from src.Constants import Constants as C
 class Controller:
   
   def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((1024,1024))
+        self.screen = pygame.display.set_mode((800,800))
         self.running = True
   def mainloop(self):
-    #select state loop
-
     self.state = "menu"
     while self.running:
         if self.state == "menu":
@@ -23,9 +23,7 @@ class Controller:
     ### below are some sample loop states ###
 
   def menuloop(self):
-    background_image = pygame.image.load("assets\Menu2.jpg")
-    self.screen.blit(background_image, (0, 0))
-    pygame.display.set_caption("menu")
+    world =World(C.MENUIMAGE)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
@@ -33,19 +31,20 @@ class Controller:
             if event.key == pygame.K_SPACE:
                 self.state = "game"
                 self.screen.fill((0,0,0))
-    pygame.display.flip()
+    world.draw(self.screen)
+        
+            
+
 
 
   def gameloop(self):
-
-     background_image = pygame.image.load("assets\class_diagram.jpg")
-     self.screen.blit(background_image, (0, 0))   
+     world = World(C.MAPIMAGE)
      for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
             print("gamestate")
-     pygame.display.flip()
+     world.draw(self.screen)
       #redraw
     
   def gameoverloop(self):
