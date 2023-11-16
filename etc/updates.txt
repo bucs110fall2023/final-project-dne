@@ -4,3 +4,6 @@ SM 11/15 8:30 pm added world.py that updates and draws screen and it is now func
 
 SM 11/15 10:30 pm edited contoller and added enemies plus display however enemies disapear
     from list randomly
+
+SM 11/15 11:30 pm worked more on previous issue 
+    - no progress but issue with enemy being delted from sprite list 

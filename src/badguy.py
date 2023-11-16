@@ -5,4 +5,9 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.rect.center = cords
-        
+    
+    def update(self):
+        self.move()
+    
+    def move(self):
+        self.rect.x += 10
