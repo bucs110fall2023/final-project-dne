@@ -6,7 +6,7 @@ class Controller:
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
-        self.screen = pygame.display.set_mode((800,800))
+        self.screen = pygame.display.set_mode((900,700))
         self.running = True
         self.state = "menu"
   
