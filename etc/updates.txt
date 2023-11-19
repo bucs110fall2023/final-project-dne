@@ -7,3 +7,5 @@ SM 11/15 10:30 pm edited contoller and added enemies plus display however enemie
 
 SM 11/15 11:30 pm worked more on previous issue 
     - no progress but issue with enemy being delted from sprite list 
+
+SM 11/19 1:19 pm Fixed enemy spawns

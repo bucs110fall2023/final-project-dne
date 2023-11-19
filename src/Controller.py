@@ -11,6 +11,7 @@ class Controller:
         self.screen = pygame.display.set_mode((900,700))
         self.running = True
         self.state = "menu"
+        self.enemy_group = pygame.sprite.Group()
   
   
   def mainloop(self):
@@ -51,18 +52,17 @@ class Controller:
     #loads map background
     world = World(C.MAPIMAGE)
     world.draw(self.screen)
-    enemy_group = pygame.sprite.Group()
     #proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
             enemy = Enemy((300,300),C.ENEMYIMAGE)
-            enemy_group.add(enemy)
+            self.enemy_group.add(enemy)
             print("looped")
-    print(enemy_group)
-    enemy_group.update()
-    enemy_group.draw(self.screen)
+    print(self.enemy_group)
+    self.enemy_group.update()
+    self.enemy_group.draw(self.screen)
     pygame.display.flip()
   
   
