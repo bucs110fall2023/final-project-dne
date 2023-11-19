@@ -50,17 +50,18 @@ class Controller:
 
   def gameloop(self):
     #loads map background
+    self.screen.fill("grey100")
     world = World(C.MAPIMAGE)
     world.draw(self.screen)
+    pygame.draw.lines(self.screen,"grey0",False,C.WAYPOINTS)
     #proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.KEYDOWN:
-            enemy = Enemy((300,300),C.ENEMYIMAGE)
+            enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
             self.enemy_group.add(enemy)
             print("looped")
-    print(self.enemy_group)
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
     pygame.display.flip()

@@ -3,3 +3,9 @@ class Constants:
     MAPIMAGE = "assets/game_map.jpg"
     MENUIMAGE = "assets/Menu.jpg"
     ENEMYIMAGE = "assets/enemy.jpg"
+    WAYPOINTS = [
+        (100,100),
+        (400,200),
+        (400,100),
+        (200,300)
+    ]

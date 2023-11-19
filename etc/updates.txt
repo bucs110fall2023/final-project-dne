@@ -9,3 +9,6 @@ SM 11/15 11:30 pm worked more on previous issue
     - no progress but issue with enemy being delted from sprite list 
 
 SM 11/19 1:19 pm Fixed enemy spawns
+
+SM 11/19 2:00 pm Coded enemy movement between waypoints as well as kill when reach end of path 
+    next need to work on map 
