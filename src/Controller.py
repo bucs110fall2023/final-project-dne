@@ -61,7 +61,6 @@ class Controller:
         if event.type == pygame.KEYDOWN:
             enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
             self.enemy_group.add(enemy)
-            print("looped")
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
     pygame.display.flip()
