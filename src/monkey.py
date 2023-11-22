@@ -1,5 +1,8 @@
-class monkey:
-    def __init__(self,x,y,Level=0):
-        self.x = 
-        self.y = 
+import pygame
+class Monkey(pygame.sprite.Sprite):
+    def __init__(self,image,pos):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(image)
+        self.rect = self.image.get_rect()
+        self.rect.center = pos
         

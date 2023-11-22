@@ -2,6 +2,7 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
+from src.monkey import Monkey
 from src.Constants import Constants as C
 class Controller:
   
@@ -12,6 +13,7 @@ class Controller:
         self.running = True
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
+        self.monkey_group = pygame.sprite.Group()
   
   
   def mainloop(self):
@@ -58,11 +60,17 @@ class Controller:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            mouse_pos = pygame.mouse.get_pos()
+            if mouse_pos[0] < C.XWINDOWSIZE and mouse_pos[1] < C.YWINDOWSIZE:
+                monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
+                self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
             enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
             self.enemy_group.add(enemy)
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
+    self.monkey_group.draw(self.screen)
     pygame.display.flip()
   
   
