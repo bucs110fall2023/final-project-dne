@@ -5,11 +5,13 @@ import math
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,waypoints,image):
         super().__init__()
+        #set up enemy intial conditions 
         self.waypoints = waypoints
         self.pos = Vector2(self.waypoints[0])
         self.target_waypoint = 1
         self.speed = 2
         self.angle = 0
+        #loads and changes image based off direction it is travelling 
         self.orignal_image = pygame.image.load(image)
         self.image = pygame.transform.rotate(self.orignal_image,self.angle)
         self.rect = self.image.get_rect()

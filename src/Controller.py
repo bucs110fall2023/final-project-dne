@@ -14,7 +14,7 @@ class Controller:
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
-        self.screen = pygame.display.set_mode((900,700))
+        self.screen = pygame.display.set_mode((C.XWINDOWSIZE+C.MENUSIZE,C.YWINDOWSIZE))
         self.running = True
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
@@ -59,6 +59,7 @@ class Controller:
     #loads map background
     self.screen.fill("grey100")
     world = World(C.MAPIMAGE)
+    
     world.draw(self.screen)
     pygame.draw.lines(self.screen,"grey0",False,C.WAYPOINTS)
     #proccesses events
