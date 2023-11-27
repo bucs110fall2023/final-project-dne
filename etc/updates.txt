@@ -12,5 +12,9 @@ SM 11/19 1:19 pm Fixed enemy spawns
 
 SM 11/19 2:00 pm Coded enemy movement between waypoints as well as kill when reach end of path 
     next need to work on map 
+
 SM 11/22 11:00 am added monkey placement, they still cant shoot 
     -added code so cant be placed in the menu area 
+
+SM 11/27 11:00 am began working on buttons to add into the menu side- 
+    need tile map and need to generate images to work more on turrets themselves 
