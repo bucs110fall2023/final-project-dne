@@ -4,6 +4,7 @@ class Constants:
     MENUIMAGE = "assets/Menu.jpg"
     ENEMYIMAGE = "assets/enemy.jpg"
     MONKEYIMAGE =  "assets/Monkey.jpg"
+    BUTTONIMAGE = "assets/Basic_red_dot.png"
    
    
    #screen size for the gameplay area 

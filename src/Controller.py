@@ -39,6 +39,7 @@ class Controller:
   def menuloop(self):
     #loads the background image
     world =World(C.MENUIMAGE)
+    button = Button(C.XWINDOWSIZE +10, C.YWINDOWSIZE -20, C.BUTTONIMAGE)
     # proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -50,6 +51,7 @@ class Controller:
                 self.screen.fill((0,0,0))
     #blits and flips display
     world.draw(self.screen)
+    button.draw(self.screen)
     pygame.display.flip()
         
             
