@@ -8,7 +8,7 @@ class Constants:
    
    
    #screen size for the gameplay area 
-    XWINDOWSIZE = 1000
+    XWINDOWSIZE = 1200
     YWINDOWSIZE = 1000
     TILESIZE = 32
     
