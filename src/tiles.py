@@ -1,4 +1,4 @@
 import pygame, csv, os
 
-class Tile(pygame, map)
+class Tile(pygame, map):
 
