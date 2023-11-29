@@ -1,6 +1,6 @@
 class Constants:
     #file location of according images 
-    MAPIMAGE = "assets/game_map.jpg"
+    MAPIMAGE = "assets/Map.png"
     MENUIMAGE = "assets/Menu.jpg"
     ENEMYIMAGE = "assets/enemy.jpg"
     MONKEYIMAGE =  "assets/Monkey.jpg"
@@ -8,9 +8,10 @@ class Constants:
    
    
    #screen size for the gameplay area 
-    XWINDOWSIZE = 700
-    YWINDOWSIZE = 700
+    XWINDOWSIZE = 1200
+    YWINDOWSIZE = 1000
     TILESIZE = 32
+    
     #Leaves room for side bar
     MENUSIZE = 200
 
