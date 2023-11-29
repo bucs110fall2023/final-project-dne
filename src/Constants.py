@@ -10,6 +10,7 @@ class Constants:
    #screen size for the gameplay area 
     XWINDOWSIZE = 700
     YWINDOWSIZE = 700
+    TILESIZE = 32
     #Leaves room for side bar
     MENUSIZE = 200
 

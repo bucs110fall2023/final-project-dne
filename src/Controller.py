@@ -39,7 +39,9 @@ class Controller:
   def menuloop(self):
     #loads the background image
     world =World(C.MENUIMAGE)
-    button = Button(C.XWINDOWSIZE +10, C.YWINDOWSIZE -20, C.BUTTONIMAGE)
+    #button = Button(C.XWINDOWSIZE +10, C.YWINDOWSIZE -20, C.BUTTONIMAGE)
+    
+    
     # proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -51,7 +53,7 @@ class Controller:
                 self.screen.fill((0,0,0))
     #blits and flips display
     world.draw(self.screen)
-    button.draw(self.screen)
+    #button.draw(self.screen)
     pygame.display.flip()
         
             
@@ -68,10 +70,10 @@ class Controller:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN: #and event.button == 1:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.XWINDOWSIZE and mouse_pos[1] < C.YWINDOWSIZE:
-                monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
+                monkey= Monkey(C.MONKEYIMAGE,mouse_pos,self.monkey_group)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
             enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
