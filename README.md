@@ -23,7 +23,7 @@ A tower defense game where balloons follow a set path and the the baboons need t
 
 ### Final Design
 
-![final gui](assets/finalgui.jpg)
+![final gui](assets/Map.png)
 
 ## Program Design
 

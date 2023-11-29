@@ -61,7 +61,7 @@ class Controller:
 
   def gameloop(self):
     #loads map background
-    self.screen.fill("grey100")
+    self.screen.fill("brown")
     world = World(C.MAPIMAGE)
     
     world.draw(self.screen)
@@ -73,7 +73,7 @@ class Controller:
         if event.type == pygame.MOUSEBUTTONDOWN: #and event.button == 1:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.XWINDOWSIZE and mouse_pos[1] < C.YWINDOWSIZE:
-                monkey= Monkey(C.MONKEYIMAGE,mouse_pos,self.monkey_group)
+                monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
             enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
