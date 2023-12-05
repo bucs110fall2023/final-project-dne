@@ -6,11 +6,13 @@ class Constants:
     MONKEYIMAGE =  "assets/Monkey.jpg"
     BUTTONIMAGE = "assets/Basic_red_dot.png"
    
-   
+
    #screen size for the gameplay area 
-    XWINDOWSIZE = 1200
-    YWINDOWSIZE = 1000
     TILESIZE = 32
+    Rows = 46
+    Cols = 30
+    Screenwidth = TILESIZE * Rows
+    Screenheight = TILESIZE * Cols
     
     #Leaves room for side bar
     MENUSIZE = 200

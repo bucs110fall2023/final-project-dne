@@ -14,7 +14,7 @@ class Controller:
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
-        self.screen = pygame.display.set_mode((C.XWINDOWSIZE+C.MENUSIZE,C.YWINDOWSIZE))
+        self.screen = pygame.display.set_mode((C.Screenwidth, C.Screenheight))
         self.running = True
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
