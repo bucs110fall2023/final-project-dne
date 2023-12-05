@@ -1,19 +1,23 @@
+import pygame
 class Constants:
     #file location of according images 
     MAPIMAGE = "assets/Map.png"
     MENUIMAGE = "assets/Menu.jpg"
-    ENEMYIMAGE = "assets/enemy.jpg"
+    ENEMYIMAGE = "assets/Balloon.png"
     MONKEYIMAGE =  "assets/Monkey.jpg"
     BUTTONIMAGE = "assets/Basic_red_dot.png"
    
 
    #screen size for the gameplay area 
-    TILESIZE = 32
-    Rows = 46
-    Cols = 30
-    SCREENWIDTH= TILESIZE * Rows
-    SCREENHEIGHT = TILESIZE * Cols
     
+    TILESIZE = 32
+    Rows = 48
+    Cols = 30
+    DEFAULTSCREENWIDTH= TILESIZE * Rows
+    DEFAULTSCREENHEIGHT = TILESIZE * Cols
+  
+    
+
     #Leaves room for side bar
     MENUSIZE = 200
 

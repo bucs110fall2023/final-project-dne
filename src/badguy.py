@@ -13,7 +13,8 @@ class Enemy(pygame.sprite.Sprite):
         self.angle = 0
         #loads and changes image based off direction it is travelling 
         self.orignal_image = pygame.image.load(image)
-        self.image = pygame.transform.rotate(self.orignal_image,self.angle)
+        self.scaled_image =  pygame.transform.scale(self.orignal_image, (20,20))
+        self.image = pygame.transform.rotate(self.scaled_image,self.angle)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
     
@@ -46,6 +47,6 @@ class Enemy(pygame.sprite.Sprite):
         dist = self.target - self.pos
         #calculate angle 
         self.angle = math.degrees(math.atan2(-dist[1],dist[0]))
-        self.image = pygame.transform.rotate(self.orignal_image,self.angle)
+        self.image = pygame.transform.rotate(self.scaled_image,self.angle)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos

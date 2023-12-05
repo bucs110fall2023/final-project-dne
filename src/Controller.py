@@ -15,7 +15,7 @@ class Controller:
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
-        self.screen = pygame.display.set_mode((C.SCREENWIDTH, C.SCREENHEIGHT))
+        self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
@@ -74,14 +74,13 @@ class Controller:
     #loads map background
     self.screen.fill("brown")
     world = World(C.MAPIMAGE)
-    
     world.draw(self.screen)
     pygame.draw.lines(self.screen,"grey0",False,C.WAYPOINTS)
     #proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
-        if event.type == pygame.MOUSEBUTTONDOWN: #and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.SCREENWIDTH and mouse_pos[1] < C.SCREENHEIGHT:
                 monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
