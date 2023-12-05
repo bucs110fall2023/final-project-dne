@@ -14,7 +14,7 @@ class Controller:
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
-        self.screen = pygame.display.set_mode((C.Screenwidth, C.Screenheight))
+        self.screen = pygame.display.set_mode((C.SCREENWIDTH, C.SCREENHEIGHT))
         self.running = True
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
@@ -72,7 +72,7 @@ class Controller:
             self.running = False
         if event.type == pygame.MOUSEBUTTONDOWN: #and event.button == 1:
             mouse_pos = pygame.mouse.get_pos()
-            if mouse_pos[0] < C.XWINDOWSIZE and mouse_pos[1] < C.YWINDOWSIZE:
+            if mouse_pos[0] < C.SCREENWIDTH and mouse_pos[1] < C.SCREENHEIGHT:
                 monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:

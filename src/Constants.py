@@ -11,8 +11,8 @@ class Constants:
     TILESIZE = 32
     Rows = 46
     Cols = 30
-    Screenwidth = TILESIZE * Rows
-    Screenheight = TILESIZE * Cols
+    SCREENWIDTH= TILESIZE * Rows
+    SCREENHEIGHT = TILESIZE * Cols
     
     #Leaves room for side bar
     MENUSIZE = 200
