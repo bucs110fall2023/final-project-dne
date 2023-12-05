@@ -1,4 +1,5 @@
 import pygame
+import json
 import random as R
 from src.world import World
 from src.badguy import Enemy
@@ -20,7 +21,17 @@ class Controller:
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
   
-  
+  class Map():
+    def __init__():
+        with open("C:/Users/quest/OneDrive/BTD Map/Maps/Map.tmj") as file:
+            world_data = json.load(file)
+        
+        world = World(world_data)
+        world.process_data()
+
+        screen = Controller()
+        world.draw(screen)
+        
   def mainloop(self):
     #swaps between differnt game stages 
     while self.running:
