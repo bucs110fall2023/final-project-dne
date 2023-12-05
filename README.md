@@ -41,4 +41,7 @@ A tower defense game where balloons follow a set path and the the baboons need t
 
 ## ATP
 
-
+|Step| Action  | Result |
+|-|------------- | ------------- |
+|1| Press Space key | updates from menu screen into game screen  |
+|2| Content Cell  | Content Cell  |
