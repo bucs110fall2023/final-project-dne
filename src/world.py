@@ -1,18 +1,19 @@
 import pygame
 from src.Constants import Constants as C
 class World():
-    def __init__(self, data, MAPIMAGE):
+    def __init__(self, MAPIMAGE, data=0):
         self.waypoints = []
         self.level_data = data 
-        self.image = C.MAPIMAGE 
+        self.image = pygame.image.load(MAPIMAGE)
 
     #extract data 
     def process_data(self):
-        for layer in self.level_data["layers"]:
-          if layer["name"] == "waypoints":
-            for obj in layer ["objects"]:
-              waypoint_data = obj["polyline"]
-              self.process_waypoints(waypoint_data)
+        if self.level_data != 0:
+            for layer in self.level_data["layers"]:
+                if layer["name"] == "waypoints":
+                    for obj in layer ["objects"]:
+                        waypoint_data = obj["polyline"]
+                        self.process_waypoints(waypoint_data)
 
     def process_waypoints(self, data):
         for point in data:

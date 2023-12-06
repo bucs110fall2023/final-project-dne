@@ -10,5 +10,6 @@ class Monkey(pygame.sprite.Sprite):
         self.y = (self.tile_y +.5) * C.TILESIZE
         
         self.image = pygame.image.load(image)
+        self.image= pygame.transform.scale(self.image,(C.TILESIZE,C.TILESIZE))
         self.rect = self.image.get_rect()
         self.rect.center = ((self.x,self.y))
