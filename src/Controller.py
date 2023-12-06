@@ -71,7 +71,7 @@ class Controller:
             self.running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
-            if mouse_pos[0] < C.SCREENWIDTH and mouse_pos[1] < C.SCREENHEIGHT:
+            if mouse_pos[0] < C.DEFAULTSCREENWIDTH and mouse_pos[1] < C.DEFAULTSCREENHEIGHT:
                 monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
