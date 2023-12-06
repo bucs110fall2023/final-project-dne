@@ -21,3 +21,6 @@ SM 11/27 11:00 am began working on buttons to add into the menu side-
 
 SM 11/28 8:15 pm added monkeys are put onto grid system still need exact tile map size to 
     work out details - couldnt figure out how to stop overlapping of turrets 
+
+SM 12/6 6:00 pm added new balloon images,diffent health/speed stats, added round data, started auto spawning 
+    -current bug is list gets reset each frame need to debug still 

@@ -18,6 +18,7 @@ class Controller:
         self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
+        self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
 
@@ -63,6 +64,7 @@ class Controller:
     #loads map background
     self.screen.fill("brown")
     world = World(C.MAPIMAGE)
+    world.process_enemies()
     world.draw(self.screen)
     pygame.draw.lines(self.screen,"grey0",False,C.WAYPOINTS)
     #proccesses events
@@ -75,12 +77,21 @@ class Controller:
                 monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
+           """
             enemy_type = "elite"
             enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
+           """
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
+    if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
+            if world.spawned < len(world.enemy_list):
+                enemy_type = world.enemy_list[world.spawned]
+                enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
+                self.enemy_group.add(enemy)
+                world.spawned += 1
+                self.last_spawn = pygame.time.get_ticks()
     pygame.display.flip()
   
   
