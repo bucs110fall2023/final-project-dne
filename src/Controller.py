@@ -20,6 +20,16 @@ class Controller:
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
+ 
+  def map():
+        with open(r"C:/Users/quest/OneDrive/BTD Map/Maps/Map.tmj") as file:
+            world_data = json.load(file)
+
+        world = World(world_data, C.MAPIMAGE) 
+        world.process_data()
+
+        screen = Controller()
+        world.draw(screen)     
         
   def mainloop(self):
     #swaps between differnt game stages 
@@ -38,7 +48,7 @@ class Controller:
 
   def menuloop(self):
     #loads the background image
-    world =World(C.MENUIMAGE)
+    world = World(C.MENUIMAGE)
     #button = Button(C.XWINDOWSIZE +10, C.YWINDOWSIZE -20, C.BUTTONIMAGE)
     
     
