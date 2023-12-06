@@ -20,17 +20,7 @@ class Controller:
         self.state = "menu"
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
- 
-  def map():
-        with open(r"C:/Users/quest/OneDrive/BTD Map/Maps/Map.tmj") as file:
-            world_data = json.load(file)
 
-        world = World(world_data, C.MAPIMAGE) 
-        world.process_data()
-
-        screen = Controller()
-        world.draw(screen)     
-        
   def mainloop(self):
     #swaps between differnt game stages 
     while self.running:
@@ -85,7 +75,8 @@ class Controller:
                 monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
         if event.type == pygame.KEYDOWN:
-            enemy = Enemy(C.WAYPOINTS,C.ENEMYIMAGE)
+            enemy_type = "elite"
+            enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)

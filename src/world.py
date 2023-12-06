@@ -4,8 +4,8 @@ class World():
     def __init__(self, MAPIMAGE, data=0):
         self.waypoints = []
         self.level_data = data 
-        self.image = pygame.image.load(MAPIMAGE)
-
+        self.image = pygame.image.load(MAPIMAGE).convert_alpha()
+    """
     #extract data 
     def process_data(self):
         if self.level_data != 0:
@@ -20,6 +20,7 @@ class World():
             temp_x = point.get("x")
             temp_y = point.get("y")
             self.waypoints.append((temp_x, temp_y))     
+            """
     
     #blits and redraws screen
     def draw(self,surface,cords=(0,0)):

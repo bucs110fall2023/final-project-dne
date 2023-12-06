@@ -3,7 +3,6 @@ class Constants:
     #file location of according images 
     MAPIMAGE = "assets/Map.png"
     MENUIMAGE = "assets/Menu.jpg"
-    ENEMYIMAGE = "assets/Balloon.png"
     MONKEYIMAGE =  "assets/Monkey.jpg"
     BUTTONIMAGE = "assets/Basic_red_dot.png"
    
@@ -28,3 +27,33 @@ class Constants:
         (400,100),
         (200,300)
     ]
+
+    ENEMY_IMAGES = {
+        "weak": "assets/Balloon/red_balloon.png",
+        "medium": "assets/Balloon/green_balloon.png",
+        "strong": "assets/Balloon/brown_balloon.png",
+        "elite": "assets/Balloon/grey_balloon.png",
+    }
+
+    
+
+    ENEMY_DATA = {
+        "weak":{
+            "health":10,
+            "speed":2
+        },
+         "medium":{
+            "health":15,
+            "speed":4
+        },
+         "strong":{
+            "health":20,
+            "speed":6
+        },
+         "elite":{
+            "health":30,
+            "speed":10
+        },
+    }
+   
+

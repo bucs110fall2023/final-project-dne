@@ -1,19 +1,21 @@
 import pygame
+from src.Constants import Constants as C
 from pygame.math import Vector2
 import math
 
 class Enemy(pygame.sprite.Sprite):
-    def __init__(self,waypoints,image):
+    def __init__(self,type,waypoints,images):
         super().__init__()
         #set up enemy intial conditions 
         self.waypoints = waypoints
         self.pos = Vector2(self.waypoints[0])
         self.target_waypoint = 1
-        self.speed = 2
+        self.health = C.ENEMY_DATA.get(type)["health"]
+        self.speed =  C.ENEMY_DATA.get(type)["speed"]
         self.angle = 0
         #loads and changes image based off direction it is travelling 
-        self.orignal_image = pygame.image.load(image)
-        self.scaled_image =  pygame.transform.scale(self.orignal_image, (20,20))
+        self.orignal_image = pygame.image.load(images.get(type)).convert_alpha()
+        self.scaled_image =  pygame.transform.scale(self.orignal_image, (30,30))
         self.image = pygame.transform.rotate(self.scaled_image,self.angle)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
