@@ -7,7 +7,15 @@ class World():
         self.level = 1
         self.waypoints = []
         self.level_data = data 
-        self.image = pygame.image.load(MAPIMAGE).convert_alpha()
+        
+        self.orignal_image = pygame.image.load(MAPIMAGE).convert_alpha()
+        #code not used yet need to edit for better form 
+        x,y =pygame.display.get_window_size()
+        x = x*.72
+        self.image = pygame.transform.scale(self.orignal_image, (x,y))
+        self.x_factor = x/C.DEFAULT_X_GAME_SIZE
+        self.y_factor = y/C.DEFAULT_Y_GAME_SIZE
+
         self.enemy_list = []
         self.spawned = 0
         
@@ -21,5 +29,5 @@ class World():
         random.shuffle(self.enemy_list)
         
     #blits and redraws screen
-    def draw(self,surface,cords=(-400,-315)):
+    def draw(self,surface,cords=(0,0)):
         surface.blit(self.image,cords)

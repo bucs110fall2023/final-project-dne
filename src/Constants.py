@@ -1,7 +1,7 @@
 import pygame
 class Constants:
     #file location of according images 
-    MAPIMAGE = "assets/Map.png"
+    MAPIMAGE = "assets/Mapnew.png"
     MENUIMAGE = "assets/Menu.jpg"
     MONKEYIMAGE =  "assets/Monkey.jpg"
     BUYIMAGE = "assets/Buy.png"
@@ -12,10 +12,8 @@ class Constants:
     TILESIZE = 32
     Rows = 30
     Cols = 31
-    DEFAULTSCREENWIDTH = TILESIZE * Cols
-    DEFAULTSCREENHEIGHT = TILESIZE * Rows 
-    
-    SPAWN_CD = 400
+    DEFAULT_X_GAME_SIZE = 992
+    DEFAULT_Y_GAME_SIZE = 718 
 
 
     #the path the enemies will travel

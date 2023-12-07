@@ -58,7 +58,7 @@ class Controller:
                 self.state = "game"
                 self.screen.fill((0,0,0))
     #blits and flips display
-    world.draw(self.screen)
+    world.draw(self.screen,(0,0))
     #button.draw(self.screen)
     pygame.display.flip()
         
@@ -71,14 +71,13 @@ class Controller:
     world = World(C.MAPIMAGE)
     world.process_enemies()
     world.draw(self.screen)
-    pygame.draw.lines(self.screen,"grey0",False,C.WAYPOINTS)
     #proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
-            if mouse_pos[0] < C.DEFAULTSCREENWIDTH:
+            if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
                 monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
                 
@@ -91,16 +90,36 @@ class Controller:
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
+
+############## needs to be fixed for better form 
+    new_waypoints = []
+    screen_x,screen_y =pygame.display.get_window_size()
+    screen_x = screen_x *.72
+    x_factor = screen_x/C.DEFAULT_X_GAME_SIZE
+    y_factor = screen_y/C.DEFAULT_Y_GAME_SIZE
+    for cords in C.WAYPOINTS:
+        x,y = cords
+        new_x = x*x_factor
+        new_y = y*y_factor
+        new_waypoints.append((new_x,new_y))
+        print(new_waypoints)
+#############################
+
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
-            if world.spawned < len(world.enemy_list):
-                enemy_type = world.enemy_list[world.spawned]
-                enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
-                self.enemy_group.add(enemy)
-                world.spawned += 1
-                self.last_spawn = pygame.time.get_ticks()
+        if world.spawned < len(world.enemy_list):
+            enemy_type = world.enemy_list[world.spawned]
+            enemy = Enemy(enemy_type,((new_waypoints)),C.ENEMY_IMAGES)
+            self.enemy_group.add(enemy)
+            world.spawned += 1
+            self.last_spawn = pygame.time.get_ticks()
     pygame.display.flip()
-  
-  
+
+
+
+
+
+
+
   
   def gameoverloop(self):
       #event loop
