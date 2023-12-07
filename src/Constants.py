@@ -9,10 +9,9 @@ class Constants:
     BACKGROUNDIMAGE = "assets/background.jpg"
 
    #screen size for the gameplay area 
-    SIDESIZE = 300 
     TILESIZE = 32
-    Rows = 32
-    Cols = 32
+    Rows = 30
+    Cols = 31
     DEFAULTSCREENWIDTH = TILESIZE * Cols
     DEFAULTSCREENHEIGHT = TILESIZE * Rows 
     
@@ -22,24 +21,24 @@ class Constants:
     #the path the enemies will travel
     SPAWN_CD = 400
     WAYPOINTS = [
-        (191,0),
-        (191,275),
-        (393,275),
-        (393,189),
-        (566,189),
-        (566,419),
-        (335,419),
-        (335,505),
-        (695,505),
-        (695,101),
-        (580,101),
-        (580,15),
-        (840,15),
-        (840,520),
-        (925,520),
-        (925,417),
-        (1025,417),
-        (1025,75)
+        (46,0),
+        (46,275),
+        (248,275),
+        (248,189),
+        (421,189),
+        (421,419),
+        (190,419),
+        (190,505),
+        (550,505),
+        (550,101),
+        (435,101),
+        (435,15),
+        (695,15),
+        (695,520),
+        (780,520),
+        (780,417),
+        (880,417),
+        (880,75)
     ]
 
     ENEMY_IMAGES = {

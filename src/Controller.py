@@ -7,15 +7,12 @@ from src.Constants import Constants as C
 from src.button import Button
 
 
-
-
 class Controller:
   
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
         self.screen = pygame.display.set_mode()
-        #self.screen = pygame.display.set_mode((C.DEFAULTSCREENWIDTH + C.SIDESIZE, C.DEFAULTSCREENHEIGHT))
         self.running = True
         self.state = "menu"
         self.last_spawn = pygame.time.get_ticks()
@@ -36,15 +33,14 @@ class Controller:
 
 
     ### below are some sample loop states ###
-
+    
   def menuloop(self):
     #loads the background image
     world = World(C.MENUIMAGE)
-    
   #def button(self):
     #placing = False 
-    #button = Button(C.DEFAULTSCREENWIDTH +10, C.DEFAULTSCREENHEIGHT -20, C.BUYIMAGE, True)
-    #ancel_button = Button((C.DEFAULTSCREENWIDTH +10, C.DEFAULTSCREENHEIGHT -20), C.CANCELIMAGE, True)
+    #button = Button((500,500), C.BUYIMAGE, True)
+    #cancel_button = Button((400,400), C.CANCELIMAGE, True)
     #if button.draw(self.screen):
         #placing = True 
     #if placing == True:
@@ -82,7 +78,7 @@ class Controller:
             self.running = False
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
-            if mouse_pos[0] < C.DEFAULTSCREENWIDTH and mouse_pos[1] < C.DEFAULTSCREENHEIGHT:
+            if mouse_pos[0] < C.DEFAULTSCREENWIDTH:
                 monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
                 

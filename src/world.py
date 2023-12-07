@@ -21,5 +21,5 @@ class World():
         random.shuffle(self.enemy_list)
         
     #blits and redraws screen
-    def draw(self,surface,cords=(-255,-315)):
+    def draw(self,surface,cords=(-400,-315)):
         surface.blit(self.image,cords)
