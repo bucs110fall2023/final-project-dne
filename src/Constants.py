@@ -4,26 +4,42 @@ class Constants:
     MAPIMAGE = "assets/Map.png"
     MENUIMAGE = "assets/Menu.jpg"
     MONKEYIMAGE =  "assets/Monkey.jpg"
-    BUTTONIMAGE = "assets/Basic_red_dot.png"
-   
+    BUYIMAGE = "assets/Buy.png"
+    CANCELIMAGE = "assets/Cancel.png"
+    BACKGROUNDIMAGE = "assets/background.jpg"
 
    #screen size for the gameplay area 
-    
+    SIDESIZE = 300 
     TILESIZE = 32
-    Rows = 48
-    Cols = 30
-    DEFAULTSCREENWIDTH= TILESIZE * Rows
-    DEFAULTSCREENHEIGHT = TILESIZE * Cols
-  
+    Rows = 32
+    Cols = 32
+    DEFAULTSCREENWIDTH = TILESIZE * Cols
+    DEFAULTSCREENHEIGHT = TILESIZE * Rows 
+    
     SPAWN_CD = 400
 
 
     #the path the enemies will travel
+    SPAWN_CD = 400
     WAYPOINTS = [
-        (100,100),
-        (400,200),
-        (400,100),
-        (200,300)
+        (191,0),
+        (191,275),
+        (393,275),
+        (393,189),
+        (566,189),
+        (566,419),
+        (335,419),
+        (335,505),
+        (695,505),
+        (695,101),
+        (580,101),
+        (580,15),
+        (840,15),
+        (840,520),
+        (925,520),
+        (925,417),
+        (1025,417),
+        (1025,75)
     ]
 
     ENEMY_IMAGES = {

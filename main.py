@@ -1,7 +1,7 @@
 import pygame
 from src.Controller import Controller
 
-def main():
+def main():     
     pygame.init()
     screen = Controller()
     screen.mainloop()
@@ -12,4 +12,4 @@ def main():
 # https://codefather.tech/blog/if-name-main-python/
 if __name__ == '__main__':
     main()
-  
+   

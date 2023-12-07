@@ -1,5 +1,4 @@
 import pygame
-import json
 import random as R
 from src.world import World
 from src.badguy import Enemy
@@ -16,12 +15,13 @@ class Controller:
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
         self.screen = pygame.display.set_mode()
+        #self.screen = pygame.display.set_mode((C.DEFAULTSCREENWIDTH + C.SIDESIZE, C.DEFAULTSCREENHEIGHT))
         self.running = True
         self.state = "menu"
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
-
+        
   def mainloop(self):
     #swaps between differnt game stages 
     while self.running:
@@ -40,8 +40,17 @@ class Controller:
   def menuloop(self):
     #loads the background image
     world = World(C.MENUIMAGE)
-    #button = Button(C.XWINDOWSIZE +10, C.YWINDOWSIZE -20, C.BUTTONIMAGE)
     
+  #def button(self):
+    #placing = False 
+    #button = Button(C.DEFAULTSCREENWIDTH +10, C.DEFAULTSCREENHEIGHT -20, C.BUYIMAGE, True)
+    #ancel_button = Button((C.DEFAULTSCREENWIDTH +10, C.DEFAULTSCREENHEIGHT -20), C.CANCELIMAGE, True)
+    #if button.draw(self.screen):
+        #placing = True 
+    #if placing == True:
+        #if cancel_button.draw(self.screen):
+            #placing = False 
+        
     
     # proccesses events
     for event in pygame.event.get():
@@ -74,8 +83,9 @@ class Controller:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.DEFAULTSCREENWIDTH and mouse_pos[1] < C.DEFAULTSCREENHEIGHT:
-                monkey= Monkey(C.MONKEYIMAGE,mouse_pos)
+                monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
+                
         if event.type == pygame.KEYDOWN:
            """
             enemy_type = "elite"
