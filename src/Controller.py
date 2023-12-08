@@ -115,7 +115,6 @@ class Controller:
         PLAYBUTTON.draw(self.screen)
         REPLAYBUTTON.draw(self.screen)
         FASTBUTTON.draw(self.screen)
-    
     pygame.display.flip()       
 
 

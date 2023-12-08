@@ -13,6 +13,7 @@ class Enemy(pygame.sprite.Sprite):
         self.target_waypoint = 1
         self.health = C.ENEMY_DATA.get(type)["health"]
         self.speed =  C.ENEMY_DATA.get(type)["speed"]
+        self.damage = 5
         self.angle = 0
         #loads and scales image based off screen size
         self.orignal_image = pygame.image.load(images.get(type)).convert_alpha()
@@ -24,7 +25,8 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         self.move()
         self.rotate()
-    
+
+            
     def move(self):
         #set target waypoint
         if self.target_waypoint < len(self.waypoints):

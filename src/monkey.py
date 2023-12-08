@@ -12,6 +12,7 @@ class Monkey(pygame.sprite.Sprite):
         self.y = (self.tile_y +.5) * C.TILESIZE
 
         self.range = 90
+        self.damage = 5
         self.selected = False
         
         #loads and scales image 
@@ -33,15 +34,7 @@ class Monkey(pygame.sprite.Sprite):
         for enemy in enemies:
             distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
             if distance < self.range:
-                enemy.health -= 1
-                if enemy.enemy_type == "weak":
-                    enemy.health -= 1
-                elif enemy.enemy_type == "medium":
-                    enemy.health -= 2
-                elif enemy.enemy_type == "strong":
-                    enemy.health -= 3
-                elif enemy.enemy_type == "elite":
-                    enemy.health -= 4
+                enemy.health -= self.damage
                 if enemy.health <= 0:
                     enemies.remove(enemy)   
                 
