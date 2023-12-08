@@ -13,9 +13,9 @@ class Constants:
     UPGRADEIMAGE = "asset/Upgrade.png"
     COINIMAGE = "asset/Coin.jpg"
    #screen size for the gameplay area 
-    TILESIZE = 32
-    Rows = 30
-    Cols = 31
+    TILESIZE = 16
+    Rows = 45
+    Cols = 62
     DEFAULT_X_GAME_SIZE = 992
     DEFAULT_Y_GAME_SIZE = 718 
   

@@ -34,7 +34,7 @@ class World():
 
     def scale(self,WAYPOINTS):
             self.scaled_list = []
-            for cords in C.WAYPOINTS:
+            for cords in WAYPOINTS:
                 x,y = cords
                 new_x = x*self.x_factor
                 new_y = y*self.y_factor

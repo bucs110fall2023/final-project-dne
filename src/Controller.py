@@ -2,7 +2,7 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
-from src.Monkey import Monkey
+from src.monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
 from pygame.math import Vector2
@@ -92,24 +92,12 @@ class Controller:
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
 
-############## needs to be fixed for better form 
-    new_waypoints = []
-    screen_x,screen_y =pygame.display.get_window_size()
-    screen_x = screen_x *.72
-    x_factor = screen_x/C.DEFAULT_X_GAME_SIZE
-    y_factor = screen_y/C.DEFAULT_Y_GAME_SIZE
-    for cords in C.WAYPOINTS:
-        x,y = cords
-        new_x = x*x_factor
-        new_y = y*y_factor
-        new_waypoints.append((new_x,new_y))
-        print(new_waypoints)
-#############################
+
 
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
         if world.spawned < len(world.enemy_list):
             enemy_type = world.enemy_list[world.spawned]
-            enemy = Enemy(enemy_type,((new_waypoints)),C.ENEMY_IMAGES)
+            enemy = Enemy(enemy_type,((world.scale(C.WAYPOINTS))),C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
             world.spawned += 1
             self.last_spawn = pygame.time.get_ticks()
