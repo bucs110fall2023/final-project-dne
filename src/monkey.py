@@ -33,7 +33,17 @@ class Monkey(pygame.sprite.Sprite):
         for enemy in enemies:
             distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
             if distance < self.range:
-                enemies.remove(enemy)   
+                enemy.health -= 1
+                if enemy.enemy_type == "weak":
+                    enemy.health -= 1
+                elif enemy.enemy_type == "medium":
+                    enemy.health -= 2
+                elif enemy.enemy_type == "strong":
+                    enemy.health -= 3
+                elif enemy.enemy_type == "elite":
+                    enemy.health -= 4
+                if enemy.health <= 0:
+                    enemies.remove(enemy)   
                 
     def draw(self,surface):
         surface.blit(self.image,self.rect)

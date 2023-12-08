@@ -6,6 +6,7 @@ import math
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,type,waypoints,images):
         super().__init__()
+        self.enemy_type = type
         #set up enemy intial conditions 
         self.waypoints = waypoints
         self.pos = Vector2(self.waypoints[0])
