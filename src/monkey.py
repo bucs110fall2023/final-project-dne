@@ -1,5 +1,6 @@
 import pygame
 from src.Constants import Constants as C
+import math
 
 class Monkey(pygame.sprite.Sprite):
     def __init__(self,image,pos,):
@@ -27,20 +28,26 @@ class Monkey(pygame.sprite.Sprite):
         self.range_image.set_alpha(100)
         self.range_rect = self.range_image.get_rect()
         self.range_rect.center = self.rect.center
-
+    
+    def attack(self, enemies):
+        for enemy in enemies:
+            distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
+            if distance < self.range:
+                enemies.remove(enemy)   
+                
     def draw(self,surface):
         surface.blit(self.image,self.rect)
         if self.selected:
             surface.blit(self.range_image,self.range_rect)
 
-    def selected_monkey(mouse_pos,group):
+    def selected_Tower(mouse_pos,group):
         tile_x = mouse_pos[0] // C.TILESIZE
         tile_y = mouse_pos[1] // C.TILESIZE
         x = (tile_x +.5) * C.TILESIZE
         y = (tile_y +.5) * C.TILESIZE
-        for monkey in group:
-            if (x,y)== (monkey.tile_x,monkey.tile_y):
-                return monkey
+        for Tower in group:
+            if (x,y)== (Tower.tile_x,Tower.tile_y):
+                return Tower
         
 
     

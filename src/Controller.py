@@ -2,20 +2,19 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
-from src.monkey import Monkey
+from src.Monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
+from pygame.math import Vector2
 
 
 class Controller:
-  
   def __init__(self):
         #inits pygame and sets screen size and start screen to the menu
         pygame.init()
         self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
-        self.selected_monkey = None
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
@@ -62,9 +61,6 @@ class Controller:
     world.draw(self.screen,(0,0))
     #button.draw(self.screen)
     pygame.display.flip()
-        
-            
-
 
   def gameloop(self):
     #loads map background
@@ -79,39 +75,64 @@ class Controller:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
-                monkey = Monkey(C.MONKEYIMAGE,mouse_pos,self.monkey_group)
+                monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
-            else:
-                self.selected_monkey = Monkey.selected_monkey(mouse_pos,self.monkey_group)
-
-    #updates enemy data 
-    self.enemy_group.update()
-    if self.selected_monkey:
-        self.selected_monkey.selected = True
-    #draws to screen
-    self.enemy_group.draw(self.screen)
-
+                
+        if event.type == pygame.KEYDOWN:
+           """
+            enemy_type = "elite"
+            enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
+            self.enemy_group.add(enemy)
+           """
     for monkey in self.monkey_group:
-        monkey.draw(self.screen)
-        
+        monkey.attack(self.enemy_group)
 
-    
 
-    #Checks spawn cooldown
+    self.enemy_group.update()
+    self.enemy_group.draw(self.screen)
+    self.monkey_group.draw(self.screen)
+
+############## needs to be fixed for better form 
+    new_waypoints = []
+    screen_x,screen_y =pygame.display.get_window_size()
+    screen_x = screen_x *.72
+    x_factor = screen_x/C.DEFAULT_X_GAME_SIZE
+    y_factor = screen_y/C.DEFAULT_Y_GAME_SIZE
+    for cords in C.WAYPOINTS:
+        x,y = cords
+        new_x = x*x_factor
+        new_y = y*y_factor
+        new_waypoints.append((new_x,new_y))
+        print(new_waypoints)
+#############################
+
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
-        #checks if all balloons in round have been spawned 
         if world.spawned < len(world.enemy_list):
             enemy_type = world.enemy_list[world.spawned]
-            #spawns Enemy
-            enemy = Enemy(enemy_type,((world.scale(C.WAYPOINTS))),C.ENEMY_IMAGES)
+            enemy = Enemy(enemy_type,((new_waypoints)),C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
-            #updates spawned count
             world.spawned += 1
-            #resets cooldown
             self.last_spawn = pygame.time.get_ticks()
 
-    #flips the screen         
-    pygame.display.flip()
+    def buttons(self):
+        MONKEYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50,50, C.MONKEYIMAGE, True)
+        CANCELBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 100, C.CANCELIMAGE, True)
+        UPGRADEBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 150, C.UPGRADEIMAGE, True)
+        PLAYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 200, C.PLAYIMAGE, True)
+        REPLAYBUTTON = Button(50, 250, C.REPLAYIMAGE, True)
+        FASTBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 300, C.FASTIMAGE, False)
+        MONKEYBUTTON.draw(self.screen)
+        CANCELBUTTON.draw(self.screen)
+        UPGRADEBUTTON.draw(self.screen)
+        PLAYBUTTON.draw(self.screen)
+        REPLAYBUTTON.draw(self.screen)
+        FASTBUTTON.draw(self.screen)
+    
+    pygame.display.flip()       
+
+
+
+
 
   
   def gameoverloop(self):

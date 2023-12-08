@@ -7,14 +7,18 @@ class Constants:
     BUYIMAGE = "assets/Buy.png"
     CANCELIMAGE = "assets/Cancel.png"
     BACKGROUNDIMAGE = "assets/background.jpg"
-
+    REPLAYIMAGE = "assets/Replay.png"
+    PLAYIMAGE = "assets/Play.png"
+    FASTIMAGE = "asset/Fast Foward.png" 
+    UPGRADEIMAGE = "asset/Upgrade.png"
+    COINIMAGE = "asset/Coin.jpg"
    #screen size for the gameplay area 
     TILESIZE = 32
     Rows = 30
     Cols = 31
     DEFAULT_X_GAME_SIZE = 992
     DEFAULT_Y_GAME_SIZE = 718 
-
+  
 
     #the path the enemies will travel
     SPAWN_CD = 400
