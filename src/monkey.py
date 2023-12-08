@@ -1,7 +1,7 @@
 import pygame
 from src.Constants import Constants as C
 
-class Tower(pygame.sprite.Sprite):
+class Monkey(pygame.sprite.Sprite):
     def __init__(self,image,pos,):
         pygame.sprite.Sprite.__init__(self)
         #corrects to center over tile
