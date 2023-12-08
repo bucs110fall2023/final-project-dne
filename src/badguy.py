@@ -13,7 +13,7 @@ class Enemy(pygame.sprite.Sprite):
         self.health = C.ENEMY_DATA.get(type)["health"]
         self.speed =  C.ENEMY_DATA.get(type)["speed"]
         self.angle = 0
-        #loads and changes image based off direction it is travelling 
+        #loads and scales image based off screen size
         self.orignal_image = pygame.image.load(images.get(type)).convert_alpha()
         self.scaled_image =  pygame.transform.scale(self.orignal_image, (30,30))
         self.image = pygame.transform.rotate(self.scaled_image,self.angle)
@@ -39,16 +39,19 @@ class Enemy(pygame.sprite.Sprite):
         if distance >= self.speed:
             self.pos += self.movement.normalize() * self.speed
         else:
+            #prevents overshooting waypoint
             if distance != 0:
                 self.pos += self.movement.normalize() * distance
             self.target_waypoint += 1
    
    
     def rotate(self):
+        
         #calc distance to next point 
         dist = self.target - self.pos
-        #calculate angle 
-        self.angle = math.degrees(math.atan2(-dist[1],dist[0]))
+        #calculate angle of rotation 
+        self.angle = math.degrees(math.atan2(-dist[1],dist[0])) % 180
         self.image = pygame.transform.rotate(self.scaled_image,self.angle)
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
+       

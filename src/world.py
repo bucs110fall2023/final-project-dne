@@ -31,3 +31,12 @@ class World():
     #blits and redraws screen
     def draw(self,surface,cords=(0,0)):
         surface.blit(self.image,cords)
+
+    def scale(self,WAYPOINTS):
+            self.scaled_list = []
+            for cords in C.WAYPOINTS:
+                x,y = cords
+                new_x = x*self.x_factor
+                new_y = y*self.y_factor
+                self.scaled_list.append((new_x,new_y))
+            return self.scaled_list

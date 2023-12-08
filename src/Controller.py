@@ -80,45 +80,29 @@ class Controller:
             if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
                 monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
-                
-        if event.type == pygame.KEYDOWN:
-           """
-            enemy_type = "elite"
-            enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
-            self.enemy_group.add(enemy)
-           """
+
+    #updates enemy data 
     self.enemy_group.update()
+
+    #draws to screen
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
 
-############## needs to be fixed for better form 
-    new_waypoints = []
-    screen_x,screen_y =pygame.display.get_window_size()
-    screen_x = screen_x *.72
-    x_factor = screen_x/C.DEFAULT_X_GAME_SIZE
-    y_factor = screen_y/C.DEFAULT_Y_GAME_SIZE
-    for cords in C.WAYPOINTS:
-        x,y = cords
-        new_x = x*x_factor
-        new_y = y*y_factor
-        new_waypoints.append((new_x,new_y))
-        print(new_waypoints)
-#############################
-
+    #Checks spawn cooldown
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
+        #checks if all balloons in round have been spawned 
         if world.spawned < len(world.enemy_list):
             enemy_type = world.enemy_list[world.spawned]
-            enemy = Enemy(enemy_type,((new_waypoints)),C.ENEMY_IMAGES)
+            #spawns Enemy
+            enemy = Enemy(enemy_type,((world.scale(C.WAYPOINTS))),C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
+            #updates spawned count
             world.spawned += 1
+            #resets cooldown
             self.last_spawn = pygame.time.get_ticks()
+
+    #flips the screen         
     pygame.display.flip()
-
-
-
-
-
-
 
   
   def gameoverloop(self):
