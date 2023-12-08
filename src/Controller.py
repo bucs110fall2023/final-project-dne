@@ -15,6 +15,7 @@ class Controller:
         self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
+        self.selected_monkey = None
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
@@ -78,15 +79,23 @@ class Controller:
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
-                monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
+                monkey = Monkey(C.MONKEYIMAGE,mouse_pos,self.monkey_group)
                 self.monkey_group.add(monkey)
+            else:
+                self.selected_monkey = Monkey.selected_monkey(mouse_pos,self.monkey_group)
 
     #updates enemy data 
     self.enemy_group.update()
-
+    if self.selected_monkey:
+        self.selected_monkey.selected = True
     #draws to screen
     self.enemy_group.draw(self.screen)
-    self.monkey_group.draw(self.screen)
+
+    for monkey in self.monkey_group:
+        monkey.draw(self.screen)
+        
+
+    
 
     #Checks spawn cooldown
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
