@@ -1,8 +1,7 @@
 import pygame
 from src.Constants import Constants as C
-import math
 
-class Monkey(pygame.sprite.Sprite):
+class Tower(pygame.sprite.Sprite):
     def __init__(self,image,pos,):
         pygame.sprite.Sprite.__init__(self)
         #corrects to center over tile
@@ -12,7 +11,6 @@ class Monkey(pygame.sprite.Sprite):
         self.y = (self.tile_y +.5) * C.TILESIZE
 
         self.range = 90
-        self.damage = 5
         self.selected = False
         
         #loads and scales image 
@@ -29,15 +27,7 @@ class Monkey(pygame.sprite.Sprite):
         self.range_image.set_alpha(100)
         self.range_rect = self.range_image.get_rect()
         self.range_rect.center = self.rect.center
-    
-    def attack(self, enemies):
-        for enemy in enemies:
-            distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
-            if distance < self.range:
-                enemy.health -= self.damage
-                if enemy.health <= 0:
-                    enemies.remove(enemy)   
-                
+
     def draw(self,surface):
         surface.blit(self.image,self.rect)
         if self.selected:
@@ -51,7 +41,12 @@ class Monkey(pygame.sprite.Sprite):
         for Tower in group:
             if (x,y)== (Tower.tile_x,Tower.tile_y):
                 return Tower
-        
+    
+    def attack(self, balloons):
+        for balloon in balloons:
+            distance = ((self.x - balloon.x)**2 + (self.y - balloon.y)**2)**0.5
+            if distance <= self.range:
+                balloons.remove(balloon)
 
     
 

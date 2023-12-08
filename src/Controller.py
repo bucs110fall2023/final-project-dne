@@ -2,7 +2,7 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
-from src.monkey import Monkey
+from src.Monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
 from pygame.math import Vector2
