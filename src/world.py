@@ -12,7 +12,7 @@ class World():
         self.orignal_image = pygame.image.load(MAPIMAGE).convert_alpha()
         x,y =pygame.display.get_window_size()
         #maintains aspect ratio
-        x = x*.72
+        x = x*C.SQUARE_FACTOR
         #scales image
         self.image = pygame.transform.scale(self.orignal_image, (x,y))
         self.x_factor = x/C.DEFAULT_X_GAME_SIZE

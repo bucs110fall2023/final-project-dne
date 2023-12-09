@@ -18,10 +18,10 @@ class Controller:
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
-        pygame.mixer.init()
-        pygame.mixer.music.load('assets/music/music.wav')
-        pygame.mixer.music.set_volume(0.5)
-        pygame.mixer.music.play(-1)
+        #pygame.mixer.init()
+        #pygame.mixer.music.load('assets/music/music.wav')
+        #pygame.mixer.music.set_volume(0.5)
+        #pygame.mixer.music.play(-1)
         
   def mainloop(self):
     #swaps between differnt game stages 

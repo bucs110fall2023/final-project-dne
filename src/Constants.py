@@ -14,5 +14,14 @@ class Constants:
    #screen size for the gameplay area 
     TILESIZE = 16
     DEFAULT_X_GAME_SIZE = 992
-    DEFAULT_Y_GAME_SIZE = 718 
+    DEFAULT_Y_GAME_SIZE = 718
+    #number to preserve the orignal map backgorunf image
+    SQUARE_FACTOR = .72
+    
+    #balloon spawn cooldown
     SPAWN_CD = 400
+
+    MONKEY_RANGE = 300
+    MONKEY_ATTACK_COOLDOWN = 1000
+
+

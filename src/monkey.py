@@ -13,9 +13,9 @@ class Monkey(pygame.sprite.Sprite):
         self.y = ((self.tile_y +.5) * C.TILESIZE)
 
         #sets attack variables 
-        self.range = 500
+        self.range = C.MONKEY_RANGE
         self.last_attack = pygame.time.get_ticks()
-        self.cd = 1000
+        self.cd = C.MONKEY_ATTACK_COOLDOWN
         
         #loads and scales image 
         self.image = pygame.image.load(image)
@@ -29,21 +29,25 @@ class Monkey(pygame.sprite.Sprite):
 
     
     def attack(self, monkey_group, enemy_list, screen):
+        #loops through monkey group
         for monkey in monkey_group:
+            #Checks cooldown and ensures that the monkey attacks after cooldown
             if pygame.time.get_ticks() - monkey.last_attack > monkey.cd and len(enemy_list) != 0:
+                #Finds closest enemy to money
                 closest_enemy = None
-                min_distance = monkey.range + 1  # Set initial min_distance to a value greater than monkey.range
-
+                # Set initial min_distance to a value greater than monkey.range
+                min_distance = monkey.range + 1  
+                #Calculates Distance to reach each enemy
                 for enemy in enemy_list:
                     distance = math.hypot(self.rect.centerx - enemy.rect.center[0], self.rect.centery - enemy.rect.center[1])
-
+                    #Updates closest Enemy 
                     if distance < monkey.range and distance < min_distance:
                         closest_enemy = enemy
                         min_distance = distance
-
+                #draws line on screen for the attack
                 if closest_enemy is not None:
-                    pygame.draw.line(screen, (0, 0, 0), (self.rect.centerx, self.rect.centery), (closest_enemy.rect.center[0], closest_enemy.rect.center[1]))
-                    #enemy_list.remove(closest_enemy)
+                    pygame.draw.line(screen, (255, 0, 0), (monkey.rect.centerx, monkey.rect.centery), (closest_enemy.rect.center[0], closest_enemy.rect.center[1]))
+                    #enemy_list.remove(closest_enemy) and applys damage and updates cooldown
                     closest_enemy.health = closest_enemy.health -5
                     monkey.last_attack = pygame.time.get_ticks()
     

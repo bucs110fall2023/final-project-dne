@@ -7,7 +7,7 @@
 ## Team Members
 
 
-*** Jay Shi, Scott Mcstay 
+Jay Shi, Scott Mcstay 
 
 ## Project Description
 
@@ -40,11 +40,11 @@ A Tower Defense Style game but with endless waves. Place monkeys as you attempt 
 ### Classes
 
 - Enemy Class 
-    -creates and manages movement for the enemy ballon types
+    - creates and manages movement for the enemy ballon types
 - Monkey Class
     - handles the spawning and targerting of all towers the user places while preventing overlapping of towers
 - World Class 
-    -loads, scales, and draws the background of the maps while also randomizing the order in which balloons appear in each wave
+    - loads, scales, and draws the background of the maps while also randomizing the order in which balloons appear in each wave
 - Constants Class
     - stores the data for variables that remain constant 
 
