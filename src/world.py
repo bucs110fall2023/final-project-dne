@@ -10,9 +10,10 @@ class World():
         self.level_data = data 
         
         self.orignal_image = pygame.image.load(MAPIMAGE).convert_alpha()
-        #code not used yet need to edit for better form 
         x,y =pygame.display.get_window_size()
+        #maintains aspect ratio
         x = x*.72
+        #scales image
         self.image = pygame.transform.scale(self.orignal_image, (x,y))
         self.x_factor = x/C.DEFAULT_X_GAME_SIZE
         self.y_factor = y/C.DEFAULT_Y_GAME_SIZE
@@ -32,7 +33,7 @@ class World():
     #blits and redraws screen
     def draw(self,surface,cords=(0,0)):
         surface.blit(self.image,cords)
-
+    #scales waypoints for differnt screen sizes 
     def scale(self,waypoints_data):
             self.scaled_list = []
             for cords in waypoints_data:

@@ -4,10 +4,9 @@ from src.world import World
 from src.badguy import Enemy
 from src.monkey import Monkey
 from src.Constants import Constants as C
-from src.button import Button
 from src.Info import Info 
 from pygame.math import Vector2
-
+from pygame import mixer 
 
 class Controller:
   def __init__(self):
@@ -16,12 +15,13 @@ class Controller:
         self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
-        self.next_round = False
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
-        self.button_group=[]
-        self.gamehealth = 1
+        pygame.mixer.init()
+        pygame.mixer.music.load('assets/music/music.wav')
+        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.play(-1)
         
   def mainloop(self):
     #swaps between differnt game stages 
@@ -30,19 +30,16 @@ class Controller:
             self.menuloop()
         elif self.state == "game":
             self.gameloop()
-        elif self.state == "gameover":
-            self.gameoverloop()
     else:
         pygame.quit()
 
 
-    ### below are some sample loop states ###
+
     
   def menuloop(self):
     #loads the background image
     world = World(C.MENUIMAGE)  
     # proccesses events
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
@@ -61,6 +58,9 @@ class Controller:
     self.screen.fill("brown")
     world = World(C.MAPIMAGE)
     world.draw(self.screen)
+
+   
+    
     #proccesses events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -74,22 +74,21 @@ class Controller:
             if event.key == pygame.K_SPACE:
                 self.next_round = True
     
+    #monkey attacks
     for monkey in self.monkey_group:
         monkey.attack(self.monkey_group,self.enemy_group,self.screen)
-
-
+    
+    #updates balloons
     self.enemy_group.update()
+
+    #redraws enems
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
-    for i in self.button_group:
-        i.draw(self.screen)
     
-
-        #if self.next_round == True:
-        print("work")
+    #procceses order of enemies spwaning 
     world.process_enemies()
-    self.next_round =False
 
+    #manages rate of spawning 
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
         if world.spawned < len(world.enemy_list):
             enemy_type = world.enemy_list[world.spawned]
@@ -97,22 +96,7 @@ class Controller:
             self.enemy_group.add(enemy)
             world.spawned += 1
             self.last_spawn = pygame.time.get_ticks()
-    
-    if self.gamehealth == 0:
-        self.state="gameover"
 
 
+    #flips display
     pygame.display.flip()       
-
-
-
-
-
-  
-  def gameoverloop(self):
-      #event loop
-    pass
-      #update data
-    self.screen.fill((0,0,0))
-      #redraw
-

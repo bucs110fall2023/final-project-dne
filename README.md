@@ -11,7 +11,7 @@
 
 ## Project Description
 
-A tower defense game where balloons follow a set path and the the baboons need to attack and stop them from making it to the exit 
+A Tower Defense Style game but with endless waves. Place monkeys as you attempt to defend your castle from the endless balloon onslaught
 
 ***    
 
@@ -30,13 +30,11 @@ A tower defense game where balloons follow a set path and the the baboons need t
 ### Features
 
 1. Menu where user can ready up and start the game  
-2. ability to place down attacking troops and not allowing them to stack 
-3. a wave system that can auto spawn in enemy charhcters 
-4. differnt balloon types 
-5. balloons follow a set track 
-6. health is automatically reduced once balloons reach the end of the track
-7. If Health hits 0 gameover is started
-8. if all rounds are beaten victory screen  
+2. ability to place down attacking troops
+3. monkeys deal damage to balloons and if balloon health = 0 the balloon is killed 
+3. differnt balloon types 
+4. balloons follow a set track 
+5. balloons disapear when reach the end of the track
 
 
 ### Classes
@@ -46,9 +44,7 @@ A tower defense game where balloons follow a set path and the the baboons need t
 - Monkey Class
     - handles the spawning and targerting of all towers the user places while preventing overlapping of towers
 - World Class 
-    -loads, scales, and draws the background of the maps while also randomizing the order in which balloons appear in each round
-- Button Class
-    - Create various buttons that once clicked allow users to place/upgrade towers
+    -loads, scales, and draws the background of the maps while also randomizing the order in which balloons appear in each wave
 - Constants Class
     - stores the data for variables that remain constant 
 
@@ -57,7 +53,8 @@ A tower defense game where balloons follow a set path and the the baboons need t
 |Step| Action  | Result |
 |-|-----------------| --------------                             |
 |1| Press Space key | updates from menu screen into game screen  |
-|2| click on the Buy Button | toggles the buy button and allows user to click again to place the turret|
-|3| click on the screen near the track| places a turret|
-|4| Press start round button| starts spawning balloons on the track|
-|5| more info | more info |
+|2| wait for balloon to reach the end of the track | Balloon follows the set track and is killed once end of track is reached|
+|3| click on the screen near the track| places a monkey |
+|4| wait for balloons to reach monkeys range| monkey shoots at the balloon farthest along the track within its range |
+|5| wait for monkey to shoot red balloon multuiple times  | the red balloon gets popped after only 2 shots|
+|6| wait for monkey to shoot grey balloon| monkey needs to shoot 5 times to pop it|

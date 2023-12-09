@@ -7,18 +7,19 @@ import math
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,type,waypoints_data,images):
         super().__init__()
-        self.spawn_time = pygame.time.get_ticks()
         #sets balloon type(ie:color)
         self.enemy_type = type
+
         #set up movement postions 
         self.waypoints_data = waypoints_data
         self.pos = Vector2(self.waypoints_data[0])
         self.target_waypoint = 1
+
         #sets damage and speed stat from file 
         self.health = Info.enemy_data.get(type)["health"]
         self.speed =  Info.enemy_data.get(type)["speed"]
-        self.damage = 5
         self.angle = 0
+
         #loads and scales image based off screen size
         self.orignal_image = pygame.image.load(images.get(type)).convert_alpha()
         self.scaled_image =  pygame.transform.scale(self.orignal_image, (30,30))
@@ -26,11 +27,16 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
     
-    def update(self,):
-        self.track_distance = (pygame.time.get_ticks()-self.spawn_time) * self.speed
+    def update(self):
         self.move()
         self.rotate()
+        self.health_check()
         
+    def health_check(self):
+        #checks to see if health is 0
+        if self.health <= 0:
+            self.kill()
+
             
     def move(self,):
         #set target waypoint
@@ -40,9 +46,7 @@ class Enemy(pygame.sprite.Sprite):
             self.x,self.y = self.pos
         else:
             #has reached end of track
-            
             self.kill()
-
         #calculate distance to target 
         distance = self.movement.length()
         #check remaining distance speed 
