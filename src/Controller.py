@@ -2,7 +2,7 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
-from src.Monkey import Monkey
+from src.monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
 from pygame.math import Vector2
@@ -102,7 +102,7 @@ class Controller:
             world.spawned += 1
             self.last_spawn = pygame.time.get_ticks()
 
-    def buttons(self):
+    def buttons():
         MONKEYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50,50, C.MONKEYIMAGE, True)
         CANCELBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 100, C.CANCELIMAGE, True)
         UPGRADEBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 150, C.UPGRADEIMAGE, True)
