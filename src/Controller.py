@@ -2,7 +2,7 @@ import pygame
 import random as R
 from src.world import World
 from src.badguy import Enemy
-from src.Monkey import Monkey
+from src.monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
 from pygame.math import Vector2
@@ -18,6 +18,8 @@ class Controller:
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
+        self.button_group=[]
+        self.gamehealth = 1
         
   def mainloop(self):
     #swaps between differnt game stages 
@@ -77,6 +79,10 @@ class Controller:
             if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
                 monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
                 self.monkey_group.add(monkey)
+                #monkeybutton = Button(1200,100, C.MONKEYIMAGE, True)
+                #self.button_group.append(monkeybutton)
+                
+            
                 
         if event.type == pygame.KEYDOWN:
            """
@@ -85,12 +91,15 @@ class Controller:
             self.enemy_group.add(enemy)
            """
     for monkey in self.monkey_group:
-        monkey.attack(self.enemy_group)
+        monkey.attack(self.monkey_group,self.enemy_group)
 
 
     self.enemy_group.update()
     self.enemy_group.draw(self.screen)
     self.monkey_group.draw(self.screen)
+    for i in self.button_group:
+        i.draw(self.screen)
+    
 
 
 
@@ -101,8 +110,11 @@ class Controller:
             self.enemy_group.add(enemy)
             world.spawned += 1
             self.last_spawn = pygame.time.get_ticks()
+    
+    if self.gamehealth == 0:
+        self.state="gameover"
 
-    def buttons(self):
+    def buttons():
         MONKEYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50,50, C.MONKEYIMAGE, True)
         CANCELBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 100, C.CANCELIMAGE, True)
         UPGRADEBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 150, C.UPGRADEIMAGE, True)
@@ -115,6 +127,7 @@ class Controller:
         PLAYBUTTON.draw(self.screen)
         REPLAYBUTTON.draw(self.screen)
         FASTBUTTON.draw(self.screen)
+
     pygame.display.flip()       
 
 
@@ -124,8 +137,8 @@ class Controller:
   
   def gameoverloop(self):
       #event loop
-      pass
+    pass
       #update data
-
+    self.screen.fill((0,0,0))
       #redraw
 

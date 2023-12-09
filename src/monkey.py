@@ -1,5 +1,6 @@
 import pygame
 from src.Constants import Constants as C
+import math 
 
 class Monkey(pygame.sprite.Sprite):
     def __init__(self,image,pos,):
@@ -11,6 +12,8 @@ class Monkey(pygame.sprite.Sprite):
         self.y = (self.tile_y +.5) * C.TILESIZE
 
         self.range = 90
+        self.last_attack = pygame.time.get_ticks()
+        self.cd = 1000
         self.selected = False
         
         #loads and scales image 
@@ -33,20 +36,24 @@ class Monkey(pygame.sprite.Sprite):
         if self.selected:
             surface.blit(self.range_image,self.range_rect)
 
-    def selected_Tower(mouse_pos,group):
+    def selected_Monkey(mouse_pos,group):
         tile_x = mouse_pos[0] // C.TILESIZE
         tile_y = mouse_pos[1] // C.TILESIZE
         x = (tile_x +.5) * C.TILESIZE
         y = (tile_y +.5) * C.TILESIZE
-        for Tower in group:
-            if (x,y)== (Tower.tile_x,Tower.tile_y):
-                return Tower
+        for monkey in group:
+            if (x,y)== (monkey.tile_x,monkey.tile_y):
+                return monkey
     
-    def attack(self, balloons):
-        for balloon in balloons:
-            distance = ((self.x - balloon.x)**2 + (self.y - balloon.y)**2)**0.5
-            if distance <= self.range:
-                balloons.remove(balloon)
+
+    def attack(self,monkey_group, enemy_list):
+            for monkey in monkey_group:
+                if pygame.time.get_ticks() - monkey.last_attack > monkey.cd:
+                    for enemy in enemy_list:
+                        distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
+                    if distance < self.range:
+                        enemy_list.remove(enemy)
+                        monkey.last_attack = pygame.time.get_ticks()
 
     
 

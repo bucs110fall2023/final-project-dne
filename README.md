@@ -31,13 +31,12 @@ A tower defense game where balloons follow a set path and the the baboons need t
 
 1. Menu where user can ready up and start the game  
 2. ability to place down attacking troops and not allowing them to stack 
-3. the abilty to upgrade and deal more damage/range/attack speed
-4. a wave system that can auto spawn in enemy charhcters 
-5. differnt balloon types 
-6. balloons follow a set track 
-7. health is automatically reduced once balloons reach the end of the track
-8. If Health hits 0 gameover is started
-9. if all rounds are beaten victory screen  
+3. a wave system that can auto spawn in enemy charhcters 
+4. differnt balloon types 
+5. balloons follow a set track 
+6. health is automatically reduced once balloons reach the end of the track
+7. If Health hits 0 gameover is started
+8. if all rounds are beaten victory screen  
 
 
 ### Classes

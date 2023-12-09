@@ -22,18 +22,21 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = self.pos
     
-    def update(self):
+    def update(self,):
         self.move()
         self.rotate()
+        
 
             
-    def move(self):
+    def move(self,):
         #set target waypoint
         if self.target_waypoint < len(self.waypoints):
             self.target = Vector2(self.waypoints[self.target_waypoint])
             self.movement = self.target - self.pos
+            self.x,self.y = self.pos
         else:
             #has reached end of track
+            
             self.kill()
 
         #calculate distance to target 
@@ -46,6 +49,7 @@ class Enemy(pygame.sprite.Sprite):
             if distance != 0:
                 self.pos += self.movement.normalize() * distance
             self.target_waypoint += 1
+        
    
    
     def rotate(self):
