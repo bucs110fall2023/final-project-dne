@@ -1,0 +1,5 @@
+import json 
+
+with open("game_data.json", "r") as json_file:
+    loaded_game_data = json.load(json_file)
+

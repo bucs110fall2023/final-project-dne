@@ -1,11 +1,12 @@
 import pygame
 import random
 from src.Constants import Constants as C
+from src.Info import Info
 
 class World():
     def __init__(self, MAPIMAGE, data=0):
         self.level = 1
-        self.waypoints = []
+        self.waypoints_data = []
         self.level_data = data 
         
         self.orignal_image = pygame.image.load(MAPIMAGE).convert_alpha()
@@ -20,7 +21,7 @@ class World():
         self.spawned = 0
         
     def process_enemies(self):
-        enemies = C.ENEMY_SPAWN_DATA[self.level-1]
+        enemies = Info.enemy_spawn_data[self.level-1]
         for enemy_type in enemies:
             enemies_to_spawn = enemies[enemy_type]
             for enemy in range(enemies_to_spawn):
@@ -32,9 +33,9 @@ class World():
     def draw(self,surface,cords=(0,0)):
         surface.blit(self.image,cords)
 
-    def scale(self,WAYPOINTS):
+    def scale(self,waypoints_data):
             self.scaled_list = []
-            for cords in WAYPOINTS:
+            for cords in waypoints_data:
                 x,y = cords
                 new_x = x*self.x_factor
                 new_y = y*self.y_factor

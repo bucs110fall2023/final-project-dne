@@ -5,6 +5,7 @@ from src.badguy import Enemy
 from src.monkey import Monkey
 from src.Constants import Constants as C
 from src.button import Button
+from src.Info import Info 
 from pygame.math import Vector2
 
 
@@ -87,11 +88,11 @@ class Controller:
         if event.type == pygame.KEYDOWN:
            """
             enemy_type = "elite"
-            enemy = Enemy(enemy_type,C.WAYPOINTS,C.ENEMY_IMAGES)
+            enemy = Enemy(enemy_type,C.waypoints_data,C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
            """
     for monkey in self.monkey_group:
-        monkey.attack(self.monkey_group,self.enemy_group)
+        monkey.attack(self.monkey_group,self.enemy_group,self.screen)
 
 
     self.enemy_group.update()
@@ -106,7 +107,7 @@ class Controller:
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
         if world.spawned < len(world.enemy_list):
             enemy_type = world.enemy_list[world.spawned]
-            enemy = Enemy(enemy_type,((world.scale(C.WAYPOINTS))),C.ENEMY_IMAGES)
+            enemy = Enemy(enemy_type,((world.scale(Info.waypoints_data))),C.ENEMY_IMAGES)
             self.enemy_group.add(enemy)
             world.spawned += 1
             self.last_spawn = pygame.time.get_ticks()

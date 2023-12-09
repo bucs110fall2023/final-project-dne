@@ -1,6 +1,7 @@
 import pygame
 from src.Constants import Constants as C
 import math 
+from src.world import World
 
 class Monkey(pygame.sprite.Sprite):
     def __init__(self,image,pos,):
@@ -8,12 +9,12 @@ class Monkey(pygame.sprite.Sprite):
         #corrects to center over tile
         self.tile_x = pos[0] // C.TILESIZE
         self.tile_y = pos[1] // C.TILESIZE
-        self.x = (self.tile_x +.5) * C.TILESIZE
-        self.y = (self.tile_y +.5) * C.TILESIZE
+        self.x = ((self.tile_x +.5) * C.TILESIZE)
+        self.y = ((self.tile_y +.5) * C.TILESIZE)
 
-        self.range = 90
+        self.range = 500
         self.last_attack = pygame.time.get_ticks()
-        self.cd = 1000
+        self.cd = 100
         self.selected = False
         
         #loads and scales image 
@@ -27,14 +28,13 @@ class Monkey(pygame.sprite.Sprite):
         self.range_image.fill((1,1,1))
         self.range_image.set_colorkey((1,1,1))
         pygame.draw.circle(self.range_image,"grey100",(self.range,self.range),self.range)
-        self.range_image.set_alpha(100)
+        self.range_image.set_alpha(0)
         self.range_rect = self.range_image.get_rect()
         self.range_rect.center = self.rect.center
 
     def draw(self,surface):
         surface.blit(self.image,self.rect)
-        if self.selected:
-            surface.blit(self.range_image,self.range_rect)
+        surface.blit(self.range_image,self.range_rect)
 
     def selected_Monkey(mouse_pos,group):
         tile_x = mouse_pos[0] // C.TILESIZE
@@ -46,12 +46,14 @@ class Monkey(pygame.sprite.Sprite):
                 return monkey
     
 
-    def attack(self,monkey_group, enemy_list):
+    def attack(self,monkey_group, enemy_list,screen):
             for monkey in monkey_group:
-                if pygame.time.get_ticks() - monkey.last_attack > monkey.cd:
+                if pygame.time.get_ticks() - monkey.last_attack > monkey.cd and len(enemy_list) != 0:
                     for enemy in enemy_list:
-                        distance = math.hypot(self.rect.centerx - enemy.rect.centerx, self.rect.centery - enemy.rect.centery)
-                    if distance < self.range:
+                        distance = math.hypot(self.rect.centerx - enemy.rect.center[0], self.rect.centery - enemy.rect.center[1])
+                        pygame.draw.line(screen,(0,0,0),(self.rect.centerx,self.rect.centery),(enemy.rect.center[0],enemy.rect.center[1]))
+                    if distance < monkey.range:
+                        print("attack")
                         enemy_list.remove(enemy)
                         monkey.last_attack = pygame.time.get_ticks()
 
