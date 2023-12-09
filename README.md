@@ -1,17 +1,17 @@
-:warning: Everything between << >> needs to be replaced (remove << >> after replacing)
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12803323&assignment_repo_type=AssignmentRepo)
 
-# << Project Title >>
-## CS110 Final Project  << Semester, Year >>
+
+# baboons vs balloons 
+## CS110 Final Project fall, 2023 
 
 ## Team Members
 
-<< List team member names >>
 
-***
+Jay Shi, Scott Mcstay 
 
 ## Project Description
 
-<< Give an overview of your project >>
+A Tower Defense Style game but with endless waves. Place monkeys as you attempt to defend the porta from the endless balloon onslaught
 
 ***    
 
@@ -23,22 +23,38 @@
 
 ### Final Design
 
-![final gui](assets/finalgui.jpg)
+![final gui](assets/Map.png)
 
 ## Program Design
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Menu where user can start the game  
+2. ability to place down attacking monkeys
+3. monkeys deal damage to balloons and if balloons health = 0 then the balloon is killed 
+4. different balloon types with different amount of hp and speed  
+5. balloons follow a set track 
+6. balloons disapear when reach the end of the track
+
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+- Enemy Class 
+    - creates and manages movement for the enemy balloon types
+- Monkey Class
+    - handles the spawning and targerting of all towers the user places while preventing overlapping of towers
+- World Class 
+    - loads, scales, and draws the background of the maps while also randomizing the order in which balloons appear in each wave
+- Constants Class
+    - stores the data for variables that remain constant 
 
 ## ATP
 
-
+|Step| Action  | Result |
+|-|-----------------| --------------                             |
+|1| Press Space key | updates from menu screen into game screen  |
+|2| wait for balloon to reach the end of the track | Balloon follows the set track and is killed once end of track is reached|
+|3| click on the screen near the track | places a monkey |
+|4| wait for balloons to reach monkeys range | monkey shoots at the balloon farthest along the track within its range |
+|5| wait for monkey to shoot red balloon multuiple times  | the red balloon gets popped after 2 shots|
+|6| wait for monkey to shoot grey balloon| monkey needs to shoot 5 times to pop it|

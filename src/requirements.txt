@@ -1,0 +1,7 @@
+pygame
+pygame-menu
+requests 
+pytest
+random
+pygame.math-Vector2
+pygame-mixer
