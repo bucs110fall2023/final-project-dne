@@ -16,6 +16,7 @@ class Controller:
         self.screen = pygame.display.set_mode()
         self.running = True
         self.state = "menu"
+        self.next_round = False
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
@@ -39,19 +40,9 @@ class Controller:
     
   def menuloop(self):
     #loads the background image
-    world = World(C.MENUIMAGE)
-  #def button(self):
-    #placing = False 
-    #button = Button((500,500), C.BUYIMAGE, True)
-    #cancel_button = Button((400,400), C.CANCELIMAGE, True)
-    #if button.draw(self.screen):
-        #placing = True 
-    #if placing == True:
-        #if cancel_button.draw(self.screen):
-            #placing = False 
-        
-    
+    world = World(C.MENUIMAGE)  
     # proccesses events
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             self.running = False
@@ -69,7 +60,6 @@ class Controller:
     #loads map background
     self.screen.fill("brown")
     world = World(C.MAPIMAGE)
-    world.process_enemies()
     world.draw(self.screen)
     #proccesses events
     for event in pygame.event.get():
@@ -79,18 +69,11 @@ class Controller:
             mouse_pos = pygame.mouse.get_pos()
             if mouse_pos[0] < C.DEFAULT_X_GAME_SIZE:
                 monkey = Monkey(C.MONKEYIMAGE,mouse_pos)
-                self.monkey_group.add(monkey)
-                #monkeybutton = Button(1200,100, C.MONKEYIMAGE, True)
-                #self.button_group.append(monkeybutton)
-                
-            
-                
+                self.monkey_group.add(monkey) 
         if event.type == pygame.KEYDOWN:
-           """
-            enemy_type = "elite"
-            enemy = Enemy(enemy_type,C.waypoints_data,C.ENEMY_IMAGES)
-            self.enemy_group.add(enemy)
-           """
+            if event.key == pygame.K_SPACE:
+                self.next_round = True
+    
     for monkey in self.monkey_group:
         monkey.attack(self.monkey_group,self.enemy_group,self.screen)
 
@@ -102,7 +85,10 @@ class Controller:
         i.draw(self.screen)
     
 
-
+        #if self.next_round == True:
+        print("work")
+    world.process_enemies()
+    self.next_round =False
 
     if pygame.time.get_ticks() - self.last_spawn > C.SPAWN_CD:
         if world.spawned < len(world.enemy_list):
@@ -115,19 +101,6 @@ class Controller:
     if self.gamehealth == 0:
         self.state="gameover"
 
-    def buttons():
-        MONKEYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50,50, C.MONKEYIMAGE, True)
-        CANCELBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 100, C.CANCELIMAGE, True)
-        UPGRADEBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 150, C.UPGRADEIMAGE, True)
-        PLAYBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 200, C.PLAYIMAGE, True)
-        REPLAYBUTTON = Button(50, 250, C.REPLAYIMAGE, True)
-        FASTBUTTON = Button(C.DEFAULT_X_GAME_SIZE + 50, 300, C.FASTIMAGE, False)
-        MONKEYBUTTON.draw(self.screen)
-        CANCELBUTTON.draw(self.screen)
-        UPGRADEBUTTON.draw(self.screen)
-        PLAYBUTTON.draw(self.screen)
-        REPLAYBUTTON.draw(self.screen)
-        FASTBUTTON.draw(self.screen)
 
     pygame.display.flip()       
 

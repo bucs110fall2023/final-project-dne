@@ -6,7 +6,7 @@
 "elite": {"health": 30, "speed": 10}}, 
 
 "enemy_spawn_data": 
-[{"weak": 1, "medium": 2, "strong": 3, "elite": 4}, 
+[{"weak": 5, "medium": 0, "strong": 0, "elite": 0}, 
 {"weak": 30, "medium": 0, "strong": 0, "elite": 0}, 
 {"weak": 20, "medium": 5, "strong": 0, "elite": 0}, 
 {"weak": 30, "medium": 15, "strong": 0, "elite": 0}, 

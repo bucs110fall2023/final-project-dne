@@ -27,10 +27,10 @@ class Enemy(pygame.sprite.Sprite):
         self.rect.center = self.pos
     
     def update(self,):
+        self.track_distance = (pygame.time.get_ticks()-self.spawn_time) * self.speed
         self.move()
         self.rotate()
         
-
             
     def move(self,):
         #set target waypoint

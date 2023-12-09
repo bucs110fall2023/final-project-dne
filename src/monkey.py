@@ -14,7 +14,7 @@ class Monkey(pygame.sprite.Sprite):
 
         self.range = 500
         self.last_attack = pygame.time.get_ticks()
-        self.cd = 100
+        self.cd = 1000
         self.selected = False
         
         #loads and scales image 
@@ -51,12 +51,12 @@ class Monkey(pygame.sprite.Sprite):
                 if pygame.time.get_ticks() - monkey.last_attack > monkey.cd and len(enemy_list) != 0:
                     for enemy in enemy_list:
                         distance = math.hypot(self.rect.centerx - enemy.rect.center[0], self.rect.centery - enemy.rect.center[1])
-                        pygame.draw.line(screen,(0,0,0),(self.rect.centerx,self.rect.centery),(enemy.rect.center[0],enemy.rect.center[1]))
+                        
                     if distance < monkey.range:
-                        print("attack")
+                        pygame.draw.line(screen,(0,0,0),(self.rect.centerx,self.rect.centery),(enemy.rect.center[0],enemy.rect.center[1]))
                         enemy_list.remove(enemy)
                         monkey.last_attack = pygame.time.get_ticks()
-
+                        break 
     
 
     
