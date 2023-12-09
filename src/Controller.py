@@ -6,7 +6,7 @@ from src.monkey import Monkey
 from src.Constants import Constants as C
 from src.Info import Info 
 from pygame.math import Vector2
-from pygame import mixer 
+
 
 class Controller:
   def __init__(self):
@@ -18,11 +18,7 @@ class Controller:
         self.last_spawn = pygame.time.get_ticks()
         self.enemy_group = pygame.sprite.Group()
         self.monkey_group = pygame.sprite.Group()
-        #pygame.mixer.init()
-        #pygame.mixer.music.load('assets/music/music.wav')
-        #pygame.mixer.music.set_volume(0.5)
-        #pygame.mixer.music.play(-1)
-        
+
   def mainloop(self):
     #swaps between differnt game stages 
     while self.running:
